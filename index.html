@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SeroGame — Independent game studio · SeroCargo</title>
+<meta name="description" content="SeroGame is an independent game studio. Our first game, SeroCargo, is a fast hybrid-casual cargo-sorting game with 120 levels, 6 worlds, 173 countries and live online races. Coming soon to Google Play and the App Store.">
+<meta name="theme-color" content="#0b1128">
+<meta property="og:title" content="SeroCargo — The belt never stops.">
+<meta property="og:description" content="A fast, hybrid-casual cargo-sorting game. 120 levels · 6 worlds · 173 countries · real rivals online. By SeroGame.">
+<meta property="og:image" content="assets/img/hero.webp">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b1128; --navy2:#0f1734; --navy3:#16214a; --line:rgba(255,255,255,.1);
+  --ink:#fff; --muted:#aab3cc; --yellow:#ffc93c; --blue:#2f6bff; --orange:#ff7a3d; --green:#1fae6b;
+  --red:#e5484d; --cyan:#18b6c9; --purple:#8a6bff; --cream:#f4efe4;
+  --r:18px; --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+h1,h2,h3,.disp{font-family:"Inter Tight",Inter,sans-serif;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(32px,4.6vw,54px);font-weight:900;margin-bottom:14px}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:720px}
+.kick{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(47,107,255,.16);color:#8fb0ff;margin-bottom:16px}
+.kick.y{background:rgba(255,201,60,.14);color:var(--yellow)} .kick.o{background:rgba(255,122,61,.15);color:#ffa274} .kick.g{background:rgba(31,174,107,.16);color:#5ee0a0}
+section{padding:96px 0;position:relative}
+.alt{background:var(--navy2)}
+
+/* nav */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:background .25s,box-shadow .25s}
+header.solid{background:rgba(11,17,40,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;gap:26px;height:70px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Inter Tight",Inter,system-ui,sans-serif;font-weight:900;font-size:22px;letter-spacing:-.02em}
+.brand img{width:34px;height:34px}
+.brand b{color:var(--yellow)}
+.nav ul{display:flex;gap:24px;list-style:none;margin-left:auto;font-weight:600;font-size:15px;color:#cdd4e8}
+.nav ul a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;padding:13px 22px;border-radius:12px;transition:transform .15s,box-shadow .15s,background .15s;cursor:pointer;border:0}
+.btn:hover{transform:translateY(-2px)}
+.btn.y{background:var(--yellow);color:#0b1128;box-shadow:0 10px 26px rgba(255,201,60,.25)}
+.btn.ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}
+.nav .btn{padding:10px 16px;font-size:14px}
+.burger{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url(assets/img/hero.webp) 70% 100%/auto 135% no-repeat;background-color:var(--navy)}
+@media (max-aspect-ratio:16/10){.hero-bg{background-size:cover;background-position:70% center}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,17,40,.98) 0%,rgba(11,17,40,.9) 38%,rgba(11,17,40,.45) 70%,rgba(11,17,40,.25) 100%),linear-gradient(0deg,var(--navy) 0%,transparent 30%),linear-gradient(180deg,rgba(11,17,40,.95) 0%,rgba(11,17,40,.55) 14%,transparent 30%)}
+.hero .wrap{position:relative;width:100%}
+.studio{font-size:13px;font-weight:800;letter-spacing:.2em;color:var(--muted);margin-bottom:20px}
+.studio b{color:var(--yellow)}
+.logo{display:inline-flex;background:#fff;padding:10px 22px;border-radius:6px;font-family:"Inter Tight",Inter,system-ui,sans-serif;font-weight:900;font-size:clamp(30px,4vw,44px);border-left:10px solid var(--blue);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.logo .s{color:#1b3fa8} .logo .c{color:#0b0b0b}
+.hero h1{font-size:clamp(52px,8.4vw,112px);font-weight:900;margin:28px 0 22px;max-width:760px}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero p.lead{color:#d6dcec;margin-bottom:30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.stores{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.store{display:flex;align-items:center;gap:10px;padding:9px 16px;border-radius:11px;background:#000;border:1px solid rgba(255,255,255,.25);opacity:.92;position:relative}
+.store svg{width:24px;height:24px;fill:#fff}
+.store small{display:block;font-size:10px;color:#cfd5e4;letter-spacing:.04em}
+.store span{font-weight:700;font-size:16px;line-height:1.1}
+.soon{font-size:11px;font-weight:900;letter-spacing:.12em;color:#0b1128;background:var(--yellow);padding:5px 9px;border-radius:999px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:-40px;position:relative;z-index:2}
+.stat{background:var(--navy3);border:1px solid var(--line);border-radius:16px;padding:20px 18px;border-top:4px solid var(--yellow)}
+.stat b{display:block;font-family:"Inter Tight",Inter,system-ui,sans-serif;font-size:40px;font-weight:900;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
+.stat:nth-child(2){border-top-color:var(--blue)} .stat:nth-child(3){border-top-color:var(--orange)} .stat:nth-child(4){border-top-color:var(--green)} .stat:nth-child(5){border-top-color:var(--purple)} .stat:nth-child(6){border-top-color:var(--cyan)}
+
+/* loop */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:40px 0}
+.step{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.step i{font-style:normal;display:inline-flex;width:44px;height:44px;border-radius:12px;align-items:center;justify-content:center;font-weight:900;font-size:19px;background:var(--yellow);color:#0b1128;margin-bottom:16px}
+.step:nth-child(2) i{background:var(--blue);color:#fff} .step:nth-child(3) i{background:var(--orange);color:#fff} .step:nth-child(4) i{background:var(--green);color:#fff}
+.step h3{font-size:26px;margin-bottom:6px} .step p{color:var(--muted);font-size:15px}
+.split{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.shot{border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px rgba(0,0,0,.45);background:#000}
+.shot img{width:100%;height:100%;object-fit:cover}
+.checks{list-style:none;display:grid;gap:12px;margin-top:20px}
+.checks li{padding-left:32px;position:relative;color:#d6dcec}
+.checks li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:6px;background:rgba(31,174,107,.2);color:#5ee0a0;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
+
+/* worlds */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:34px 0 22px}
+.tab{background:rgba(255,255,255,.05);border:1px solid var(--line);color:#cdd4e8;font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;cursor:pointer;font-family:inherit;transition:.15s}
+.tab:hover{color:#fff}
+.tab.on{background:#fff;color:#0b1128;border-color:#fff}
+.world{display:grid;grid-template-columns:1.5fr 1fr;gap:34px;align-items:center}
+.world .shot{aspect-ratio:16/8.4}
+.world .shot img{transition:opacity .3s}
+.wnum{font-family:"Inter Tight",Inter,system-ui,sans-serif;font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--yellow);margin-bottom:8px}
+.world h3{font-size:clamp(28px,3.2vw,40px);margin-bottom:12px}
+.world p{color:var(--muted);margin-bottom:18px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:13px;font-weight:700;padding:7px 12px;border-radius:9px;background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.pill.hl{background:rgba(255,201,60,.15);border-color:rgba(255,201,60,.4);color:var(--yellow)}
+
+/* difficulty */
+.levers{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px}
+.lever{background:var(--navy3);border:1px solid var(--line);border-radius:16px;padding:22px 20px}
+.lever .ic{font-size:28px;margin-bottom:12px}
+.lever h4{font-size:17px;margin-bottom:6px;font-family:"Inter Tight"}
+.lever p{font-size:14px;color:var(--muted)}
+.curve{margin-top:28px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.curve svg{width:100%;height:auto;display:block}
+
+/* cards grid */
+.cargo{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.cc{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start;border-left:4px solid var(--red)}
+.cc .ic{font-size:28px;width:52px;height:52px;flex:none;border-radius:13px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center}
+.cc h4{font-family:"Inter Tight",Inter,system-ui,sans-serif;font-size:19px} .cc em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+.cc p{font-size:14px;color:#c4cbde;margin-top:4px}
+.cc:nth-child(2){border-left-color:var(--yellow)} .cc:nth-child(3){border-left-color:var(--orange)} .cc:nth-child(4){border-left-color:var(--purple)} .cc:nth-child(5){border-left-color:var(--cyan)} .cc:nth-child(6){border-left-color:var(--green)}
+.events{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.ev .shot{aspect-ratio:16/9}
+.ev h4{font-family:"Inter Tight",Inter,system-ui,sans-serif;font-size:18px;margin-top:12px} .ev p{font-size:14px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+
+/* modes */
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.mode{background:var(--navy3);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.mode .shot{border:0;border-radius:0;box-shadow:none;aspect-ratio:16/9}
+.mode .body{padding:22px}
+.mode h3{font-size:24px;margin-bottom:6px}
+.mode p{color:var(--muted);font-size:15px}
+.mode .tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.12em;margin-bottom:10px;color:var(--yellow)}
+
+/* online */
+.olist{display:grid;gap:12px;margin-top:28px}
+.orow{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.orow i{font-style:normal;flex:none;width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-weight:900}
+.orow b{display:block;font-size:17px} .orow span{color:var(--muted);font-size:14px}
+.live{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:#5ee0a0;margin-top:20px}
+.live::before{content:"";width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+
+/* ranks */
+.ranks{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.rk{font-weight:800;font-size:14px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.rk.top{background:var(--yellow);color:#0b1128;border-color:var(--yellow)}
+.ra{color:var(--blue);font-weight:900;align-self:center}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+.gal button{border:0;padding:0;background:none;cursor:zoom-in;border-radius:14px;overflow:hidden;aspect-ratio:16/9;position:relative}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.gal button:hover img{transform:scale(1.06)}
+.gal button.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.lb{position:fixed;inset:0;background:rgba(5,8,20,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:30px}
+.lb.on{display:flex}
+.lb img{max-height:88vh;border-radius:12px}
+.lb button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;font-size:28px;width:52px;height:52px;border-radius:50%;cursor:pointer}
+.lb .x{top:20px;right:20px} .lb .pv{left:20px} .lb .nx{right:20px}
+
+/* video */
+.video{margin-top:34px;border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:16/9;background:#000;border:1px solid rgba(255,255,255,.14)}
+.video img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.video a{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+.play{width:92px;height:92px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px rgba(255,201,60,.18);transition:transform .2s}
+.video a:hover .play{transform:scale(1.08)}
+.play::after{content:"";border-left:28px solid #0b1128;border-top:17px solid transparent;border-bottom:17px solid transparent;margin-left:7px}
+.video a b{font-size:20px} .video a span{color:#cfd5e4;font-size:14px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* publishers */
+.pub{background:linear-gradient(135deg,#13204d 0%,#0b1128 60%);border:1px solid rgba(255,201,60,.3);border-radius:28px;padding:56px;display:grid;grid-template-columns:1.1fr 1fr;gap:44px;position:relative;overflow:hidden}
+.pub::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,201,60,.18),transparent 65%)}
+.pub h2{font-size:clamp(30px,4vw,46px)}
+.docs{display:grid;gap:14px;align-content:start;position:relative;z-index:1}
+.doc{display:flex;align-items:center;gap:16px;background:#fff;color:#0b1128;border-radius:16px;padding:18px 20px;transition:transform .15s}
+.doc:hover{transform:translateY(-3px)}
+.doc .fi{flex:none;width:48px;height:58px;border-radius:8px;background:var(--red);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px;position:relative}
+.doc .fi::before{content:"";position:absolute;top:0;right:0;border-left:14px solid #c13a3e;border-bottom:14px solid #fff}
+.doc b{display:block;font-size:17px} .doc span{font-size:13px;color:#5a6278}
+.doc .dl{margin-left:auto;font-weight:900;color:var(--blue);font-size:20px}
+.asks{list-style:none;display:grid;gap:10px;margin-top:24px}
+.asks li{display:flex;gap:12px;color:#d6dcec}
+.asks li b{color:var(--yellow)}
+.asks li::before{content:"→";color:var(--yellow);font-weight:900}
+.note{font-size:13px;color:var(--muted);margin-top:18px}
+
+/* studio */
+.studio-box{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.quote{font-family:"Inter Tight",Inter,system-ui,sans-serif;font-size:clamp(30px,4vw,48px);font-weight:900;line-height:1.08}
+.quote em{font-style:normal;color:var(--yellow)}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.val{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:20px}
+.val b{display:block;font-family:"Inter Tight",Inter,system-ui,sans-serif;font-size:18px;margin-bottom:4px}
+.val span{font-size:14px;color:var(--muted)}
+
+/* contact */
+.contact{text-align:center}
+.contact h2{margin-bottom:10px}
+.mail{display:inline-flex;align-items:center;gap:12px;font-family:"Inter Tight",Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);background:#fff;color:#0b1128;padding:18px 30px;border-radius:16px;margin:28px 0 12px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.mail:hover{background:var(--yellow)}
+
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
+.foot{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.foot nav{display:flex;flex-wrap:wrap;gap:20px}
+.foot a:hover{color:#fff}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1000px){
+  .nav ul{display:none;position:absolute;top:70px;left:0;right:0;background:rgba(11,17,40,.98);flex-direction:column;padding:16px 22px 22px;gap:16px;border-bottom:1px solid var(--line)}
+  .nav ul.open{display:flex}
+  .burger{display:block}
+  .nav>.btn{display:none}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .steps,.levers{grid-template-columns:repeat(2,1fr)}
+  .split,.world,.pub,.studio-box{grid-template-columns:1fr}
+  .cargo,.modes{grid-template-columns:1fr 1fr}
+  .events,.gal{grid-template-columns:1fr 1fr}
+  .pub{padding:34px 24px}
+}
+@media (max-width:600px){
+  section{padding:70px 0}
+  .stats{grid-template-columns:1fr 1fr;margin-top:-20px}
+  .steps,.levers,.cargo,.modes,.events,.values{grid-template-columns:1fr}
+  .gal button.big{grid-column:span 2;grid-row:auto;aspect-ratio:16/9}
+  .hero-bg{background-position:65% center}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(11,17,40,.75) 0%,rgba(11,17,40,.93) 55%,var(--navy) 100%)}
+}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#"><img src="favicon.svg" alt=""><span>Sero<b>Game</b></span></a>
+    <ul id="menu">
+      <li><a href="#game">Game</a></li>
+      <li><a href="#worlds">Worlds</a></li>
+      <li><a href="#modes">Modes</a></li>
+      <li><a href="#online">Online</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#publishers">Publishers</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn y" href="#publishers">For publishers</a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="studio"><b>SEROGAME</b> · INDEPENDENT GAME STUDIO · PRESENTS</div>
+    <div class="logo"><span class="s">Sero</span><span class="c">Cargo</span></div>
+    <h1>The belt <em>never</em> stops.</h1>
+    <p class="lead">A fast, hybrid-casual cargo-sorting game. Read the city, grab the box, throw it into the right truck — across 120 levels, 6 worlds and 173 countries, against real rivals online.</p>
+    <div class="ctas">
+      <a class="btn y" href="#video">▶ Watch gameplay</a>
+      <a class="btn ghost" href="#game">Discover the game</a>
+    </div>
+    <div class="stores">
+      <div class="store"><svg viewBox="0 0 24 24"><path d="M3.6 1.8 13.4 12l-9.8 10.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1Zm10.8 11.3 2.6 2.6-11.7 6.7 9.1-9.3Zm3.8-3.8 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7-2.9-2.8 2.9-2.7Zm-13-7.7L16.9 8.3l-2.6 2.6-9.1-9.3Z"/></svg><div><small>COMING SOON ON</small><span>Google Play</span></div></div>
+      <div class="store"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.3-.1 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.5-1-2.5-4Zm-2.5-7.5c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"/></svg><div><small>COMING SOON ON THE</small><span>App Store</span></div></div>
+      <span class="soon">COMING SOON</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats reveal">
+    <div class="stat"><b>120</b><span>career levels</span></div>
+    <div class="stat"><b>6</b><span>worlds · 6 vehicles</span></div>
+    <div class="stat"><b>173</b><span>countries · real cities</span></div>
+    <div class="stat"><b>16</b><span>languages</span></div>
+    <div class="stat"><b>5</b><span>live online modes</span></div>
+    <div class="stat"><b>2,160</b><span>challenge parts</span></div>
+  </div>
+</div>
+
+<!-- GAME / LOOP -->
+<section id="game">
+  <div class="wrap">
+    <div class="kick y">The game</div>
+    <h2>A loop you learn in five seconds.</h2>
+    <p class="lead">No tutorial wall. The first launch drops you straight into Level 1 — in your language, with your own country’s cities on the boxes.</p>
+    <div class="steps">
+      <div class="step reveal"><i>1</i><h3>Read</h3><p>the city printed on the box</p></div>
+      <div class="step reveal"><i>2</i><h3>Grab</h3><p>it off the moving belt</p></div>
+      <div class="step reveal"><i>3</i><h3>Throw</h3><p>it into the truck with that city</p></div>
+      <div class="step reveal"><i>4</i><h3>Score</h3><p>streaks, stars, ranks and records</p></div>
+    </div>
+    <div class="split">
+      <div class="shot reveal"><img src="assets/img/level6.webp" alt="SeroCargo gameplay: boxes on the belt and trucks labelled with US states" loading="lazy"></div>
+      <div class="reveal">
+        <h3 class="disp" style="font-size:32px;margin-bottom:10px">Your city is on the belt.</h3>
+        <p class="lead">Pick any of 173 countries and sort boxes for your own cities. A player in São Paulo sees “São Paulo” on a box — and keeps playing.</p>
+        <ul class="checks">
+          <li>Simple to start, hard to put down</li>
+          <li>The belt starts calm and speeds up as you deliver</li>
+          <li>Short runs — perfect for a quick break</li>
+          <li>Leave any time; saved shifts continue exactly where you stopped</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLDS -->
+<section id="worlds" class="alt">
+  <div class="wrap">
+    <div class="kick">Career · 120 levels</div>
+    <h2>Six worlds. One career.</h2>
+    <p class="lead">A new place, a new vehicle and a new rule every 20 levels — from a city hub all the way to the CEO’s chair.</p>
+    <div class="tabs" id="wtabs"></div>
+    <div class="world">
+      <div class="shot"><img id="wimg" src="assets/img/w1.webp" alt=""></div>
+      <div>
+        <div class="wnum" id="wnum"></div>
+        <h3 id="wname"></h3>
+        <p id="wtext"></p>
+        <div class="pills" id="wpills"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFICULTY -->
+<section>
+  <div class="wrap">
+    <div class="kick o">Progression</div>
+    <h2>It gets harder. It never gets boring.</h2>
+    <p class="lead">Every level changes something. Difficulty climbs on five levers at once, with calmer “breather” levels in between.</p>
+    <div class="levers">
+      <div class="lever reveal"><div class="ic">🚚</div><h4>Vehicle layout</h4><p>From 2 vans to 8 planes — ramps, zones, the whole belt.</p></div>
+      <div class="lever reveal"><div class="ic">⚙️</div><h4>In-level events</h4><p>10 events, mixed and stacked.</p></div>
+      <div class="lever reveal"><div class="ic">🎯</div><h4>Cargo targets</h4><p>Bigger goals as you climb the ladder.</p></div>
+      <div class="lever reveal"><div class="ic">📦</div><h4>Special cargo</h4><p>A new type of box in every world.</p></div>
+      <div class="lever reveal"><div class="ic">⏩</div><h4>Belt speed</h4><p>Faster inside every level — and level after level.</p></div>
+    </div>
+    <div class="curve reveal"><svg id="curve" viewBox="0 0 1100 300" role="img" aria-label="Illustrative saw-tooth difficulty curve across six worlds"></svg></div>
+  </div>
+</section>
+
+<!-- SPECIAL CARGO + EVENTS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kick g">Variety</div>
+    <h2>Not every box is just a box.</h2>
+    <p class="lead">Each special cargo has its own badge, sound and drag feel — and a short slow-motion intro the first time you meet it.</p>
+    <div class="cargo">
+      <div class="cc reveal"><div class="ic">🥂</div><div><em>WORLD 2</em><h4>Fragile</h4><p>Wobbles in your hand. Handle with care.</p></div></div>
+      <div class="cc reveal"><div class="ic">⚡</div><div><em>WORLD 3</em><h4>Express</h4><p>Rushes down the belt. Catch it in time.</p></div></div>
+      <div class="cc reveal"><div class="ic">⛓️</div><div><em>WORLD 4</em><h4>Heavy container</h4><p>Counts as two. Pulls back when you lift it.</p></div></div>
+      <div class="cc reveal"><div class="ic">🧳</div><div><em>WORLD 5</em><h4>Priority baggage</h4><p>Drawn to its own plane like a magnet.</p></div></div>
+      <div class="cc reveal"><div class="ic">🔒</div><div><em>WORLD 6</em><h4>Sealed capsule</h4><p>Shows a short code, not a city. Decode it.</p></div></div>
+      <div class="cc reveal"><div class="ic">🚫</div><div><em>WORLD 5+</em><h4>Trap city</h4><p>Looks like yours. It isn’t. Let it pass.</p></div></div>
+    </div>
+
+    <h3 class="disp" style="font-size:34px;margin-top:70px">Something always happens.</h3>
+    <div class="events">
+      <div class="ev reveal"><div class="shot"><img src="assets/img/ev_sign.webp" alt="Sign changing event" loading="lazy"></div><h4>Sign changing</h4><p>A truck switches city mid-level.</p></div>
+      <div class="ev reveal"><div class="shot"><img src="assets/img/ev_charge.webp" alt="Belt worker on charge event at the port" loading="lazy"></div><h4>Belt worker on charge</h4><p>His trucks are yours for 15 seconds.</p></div>
+      <div class="ev reveal"><div class="shot"><img src="assets/img/ev_urgent.webp" alt="Urgent order event" loading="lazy"></div><h4>Urgent order</h4><p>Three boxes in thirteen seconds.</p></div>
+      <div class="ev reveal"><div class="shot"><img src="assets/img/ev_last.webp" alt="Last call event at headquarters" loading="lazy"></div><h4>Last call</h4><p>Vehicles leave when the clock runs out.</p></div>
+    </div>
+    <div class="chips">
+      <span class="pill">Apprentice</span><span class="pill">Urgent order</span><span class="pill">Belt worker on charge</span><span class="pill">Sign changing</span><span class="pill">Rush wave</span><span class="pill">Streak time</span><span class="pill">Belt gone crazy</span><span class="pill">Trap city</span><span class="pill">Flawless</span><span class="pill">Departure time</span>
+    </div>
+  </div>
+</section>
+
+<!-- MODES -->
+<section id="modes">
+  <div class="wrap">
+    <div class="kick y">Modes</div>
+    <h2>More ways to play.</h2>
+    <div class="modes">
+      <div class="mode reveal"><div class="shot"><img src="assets/img/mission.webp" alt="Supervisor mission with eight lorries" loading="lazy"></div><div class="body"><span class="tag">12 MISSIONS</span><h3>Supervisor missions</h3><p>Two missions close every world. Each one tests a different reflex — from “Zero Mistakes” to “The Belt Lost Its Mind”.</p></div></div>
+      <div class="mode reveal"><div class="shot"><img src="assets/img/challenge2.webp" alt="Challenge mode" loading="lazy"></div><div class="body"><span class="tag">216 CHALLENGES</span><h3>Challenge</h3><p>Any country, any difficulty. Against Time or Against Lives, 1 to 8 trucks, 10 parts each. Medals light up as you win.</p></div></div>
+      <div class="mode reveal"><div class="shot"><img src="assets/img/record.webp" alt="World Record mode at the port" loading="lazy"></div><div class="body"><span class="tag">GLOBAL BOARDS</span><h3>World Record</h3><p>A 200-second sprint or a 5-lives marathon. Weekly boards reset — a fresh race to #1 every week.</p></div></div>
+      <div class="mode reveal"><div class="shot"><img src="assets/img/training.webp" alt="Training map" loading="lazy" style="object-position:left center"></div><div class="body"><span class="tag">PRACTICE</span><h3>Training</h3><p>Replay any of the 120 levels or 12 missions. Your real career is never touched.</p></div></div>
+      <div class="mode reveal"><div class="shot"><img src="assets/img/canteen.webp" alt="Canteen with perks" loading="lazy" style="object-position:left top"></div><div class="body"><span class="tag">SERO ECONOMY</span><h3>Earn & spend SERO</h3><p>Daily shift stamps, work orders and a weekly goal. Spend SERO at the canteen on perks like +1 life or +10 seconds.</p></div></div>
+      <div class="mode reveal"><div class="shot"><img src="assets/img/drone1.webp" alt="Drone break over the port" loading="lazy"></div><div class="body"><span class="tag">DRONE BREAK</span><h3>Slack off</h3><p>Take a short drone break mid-shift and fly around the world you work in.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE -->
+<section id="online" class="alt">
+  <div class="wrap split">
+    <div>
+      <div class="kick g">Online</div>
+      <h2>Five ways to beat a real person.</h2>
+      <div class="olist">
+        <div class="orow reveal"><i>1</i><div><b>World Rankings</b><span>Weekly and all-time global boards</span></div></div>
+        <div class="orow reveal"><i>2</i><div><b>Daily Race</b><span>A new country every day — same cargo for everyone</span></div></div>
+        <div class="orow reveal"><i>3</i><div><b>Ghost Race</b><span>Race a real player’s recorded run, no waiting</span></div></div>
+        <div class="orow reveal"><i>4</i><div><b>Quick Race</b><span>Live 1v1 — same cargo, same second</span></div></div>
+        <div class="orow reveal"><i>5</i><div><b>Race Rooms</b><span>2–6 players, private code or open room</span></div></div>
+      </div>
+      <div class="live">Live score mid-run: “StormRider 21 · You 22 · 1 ahead”</div>
+    </div>
+    <div class="shot reveal"><img src="assets/img/ghost.webp" alt="Ghost race at the airport with live score" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- CAREER LADDER -->
+<section>
+  <div class="wrap studio-box">
+    <div class="reveal">
+      <div class="kick o">Status</div>
+      <h2>Not a game about work.<br>A job you play.</h2>
+      <p class="lead">Clock in, work your shift, get promoted. Every player who reaches Manager joins the public Company Managers board — numbered, dated, forever.</p>
+      <div class="ranks">
+        <span class="rk">Rookie</span><span class="ra">→</span><span class="rk">Apprentice</span><span class="ra">→</span><span class="rk">Line Chief</span><span class="ra">→</span><span class="rk">Shift Supervisor</span><span class="ra">→</span><span class="rk">Manager</span><span class="ra">→</span><span class="rk">Regional Manager</span><span class="ra">→</span><span class="rk">Logistics Director</span><span class="ra">→</span><span class="rk top">The CEO’s chair</span>
+      </div>
+      <ul class="checks">
+        <li>235 badges and 419 medals to collect</li>
+        <li>Ranks and titles other players can see</li>
+        <li>“What kind of staff?” — a 7-day HR report built from how you actually play</li>
+      </ul>
+    </div>
+    <div class="shot reveal"><img src="assets/img/hr.webp" alt="HR evaluation report screen" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="alt">
+  <div class="wrap">
+    <div class="kick">Gallery</div>
+    <h2>Screenshots.</h2>
+    <p class="lead">Captured on a phone from the current build.</p>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="wrap">
+    <div class="kick y">Gameplay</div>
+    <h2>See it in motion.</h2>
+    <p class="lead">Gameplay videos from the current build on our YouTube channel.</p>
+    <div class="video reveal" id="videoBox">
+      <img src="assets/img/w5.webp" alt="" loading="lazy">
+      <a id="videoLink" href="https://youtube.com/playlist?list=PLBW4rJ9nlO2Q" target="_blank" rel="noopener">
+        <div class="play"></div><b>Watch gameplay on YouTube</b><span>Opens in a new tab</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLISHERS -->
+<section id="publishers">
+  <div class="wrap">
+    <div class="pub reveal">
+      <div style="position:relative;z-index:1">
+        <div class="kick y">For publishers</div>
+        <h2>Let’s take SeroCargo further — together.</h2>
+        <p class="lead">SeroCargo is playable end to end today. We are looking for a partner to publish and market it, and to help make it flawless with real players and data.</p>
+        <ul class="asks">
+          <li><span><b>Publishing</b> on Google Play and the App Store</span></li>
+          <li><span><b>Marketing</b> · user acquisition · CPI and D1 / D7 / D30 strategy</span></li>
+          <li><span>Support with SERO maths & in-app purchases, difficulty tuning across 120 levels, real-player testing, and art & UI polish</span></li>
+        </ul>
+        <p class="note">A test build is ready to play. Write to us and we will send you the APK.</p>
+      </div>
+      <div class="docs">
+        <a class="doc" href="press/SeroCargo_Publisher_Pitch.pdf" target="_blank" rel="noopener"><div class="fi">PDF</div><div><b>Publisher pitch</b><span>33 slides · gameplay, worlds, online, business</span></div><span class="dl">↓</span></a>
+        <a class="doc" href="press/SeroCargo_SWOT_Analysis.pdf" target="_blank" rel="noopener"><div class="fi">PDF</div><div><b>SWOT analysis</b><span>6 pages · strengths, gaps, roadmap</span></div><span class="dl">↓</span></a>
+        <a class="doc" href="mailto:serocargo2026@gmail.com?subject=SeroCargo%20test%20build%20request"><div class="fi" style="background:var(--green)">APK</div><div><b>Request the test build</b><span>Android · sent by email</span></div><span class="dl">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section class="alt">
+  <div class="wrap studio-box">
+    <div class="reveal">
+      <div class="kick">The studio</div>
+      <div class="quote">One developer built this.<br><em>Imagine it with your team.</em></div>
+      <p class="lead" style="margin-top:20px">SeroGame is an independent game studio. SeroCargo — our first game — was designed, built and localised into 16 languages by a single developer, with a full online layer already live.</p>
+    </div>
+    <div class="values reveal">
+      <div class="val"><b>Data over opinion</b><span>We change what the numbers say to change.</span></div>
+      <div class="val"><b>Fast iteration</b><span>Quick turnaround on feedback and balance.</span></div>
+      <div class="val"><b>Fair to players</b><span>Optional rewarded ads. Never pay-to-win on the boards.</span></div>
+      <div class="val"><b>Global from day one</b><span>173 countries, 16 languages, low-end friendly.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="kick y">Contact</div>
+    <h2>Let’s talk.</h2>
+    <p class="lead" style="margin:0 auto">Publishing, partnerships, press or player feedback — we read every message.</p>
+    <a class="mail" href="mailto:serocargo2026@gmail.com">✉ serocargo2026@gmail.com</a>
+    <p class="note">We usually reply within 1–2 days.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><a class="brand" href="#" style="font-size:18px"><img src="favicon.svg" alt="" style="width:26px;height:26px"><span>Sero<b>Game</b></span></a><div style="margin-top:6px">© 2026 SeroGame. All rights reserved.</div></div>
+    <nav>
+      <a href="https://serogame2026.github.io/serocargo-sayfalar/gizlilik.html" target="_blank" rel="noopener">Privacy policy</a>
+      <a href="https://serogame2026.github.io/serocargo-sayfalar/hesap-sil.html" target="_blank" rel="noopener">Delete your account</a>
+      <a href="#publishers">Press kit</a>
+      <a href="mailto:serocargo2026@gmail.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button>
+  <img id="lbimg" alt=""><button class="nx" aria-label="Next">›</button>
+</div>
+
+<script>
+/* ===== Settings you may edit =====
+   When the new gameplay videos are ready, paste the YouTube video ID
+   (the part after "watch?v=") here, e.g. "dQw4w9WgXcQ". Leave "" to show the link button. */
+const YOUTUBE_VIDEO_ID = "";
+const YOUTUBE_LINK = "https://youtube.com/playlist?list=PLBW4rJ9nlO2Q";
+
+/* nav background */
+const hdr = document.getElementById('top');
+const onScroll = () => hdr.classList.toggle('solid', scrollY > 30);
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => document.getElementById('menu').classList.remove('open')));
+
+/* worlds */
+const W = [
+ ["w1","City Transfer Hub","Levels 1–20 · Panel vans","Learn the job. Read the labels, find your rhythm and meet your first apprentice.",["2 → 4 vans","Finger guide","The basics"]],
+ ["w2","Highway Lorry Terminal","Levels 21–40 · Semi-trailers","Big rigs, wider ramps and the first special cargo.",["Fragile parcels","Urgent orders","Rush waves"]],
+ ["w3","Rail Freight Terminal","Levels 41–60 · Freight wagons","Trains don’t wait. Express parcels race down the belt.",["Express parcels","Sign changing","Time trials"]],
+ ["w4","Port Container Terminal","Levels 61–80 · Ro-Ro barges","Cranes, water and heavy steel containers that count double.",["Heavy containers","Belt worker on charge","Belt gone crazy"]],
+ ["w5","Airport Cargo Terminal","Levels 81–100 · Cargo planes","Priority baggage, trap cities and planes that leave on the clock.",["Priority baggage","Trap city","Departure time"]],
+ ["w6","SeroCargo Headquarters","Levels 101–120 · Autonomous pods","The final stretch to the CEO’s chair. Sealed capsules and flawless shifts.",["Sealed capsules","Flawless","Headquarters Audit"]]
+];
+const tabs = document.getElementById('wtabs'), wimg = document.getElementById('wimg');
+function showWorld(i){
+  const w = W[i];
+  [...tabs.children].forEach((b,k)=>b.classList.toggle('on',k===i));
+  wimg.style.opacity = 0;
+  setTimeout(()=>{ wimg.src = `assets/img/${w[0]}.webp`; wimg.alt = w[1]; wimg.style.opacity = 1; }, 180);
+  document.getElementById('wnum').textContent = `WORLD ${i+1} OF 6 · ${w[2].toUpperCase()}`;
+  document.getElementById('wname').textContent = w[1];
+  document.getElementById('wtext').textContent = w[3];
+  document.getElementById('wpills').innerHTML = w[4].map((p,k)=>`<span class="pill${k===0?' hl':''}">${p}</span>`).join('');
+}
+W.forEach((w,i)=>{ const b=document.createElement('button'); b.className='tab'; b.textContent=`${i+1} · ${w[1]}`; b.onclick=()=>showWorld(i); tabs.appendChild(b); });
+showWorld(0);
+W.forEach(w=>{ const p=new Image(); p.src=`assets/img/${w[0]}.webp`; });
+
+/* difficulty curve (illustrative) */
+(function(){
+  const svg = document.getElementById('curve'), Wd=1100, H=300, X0=40, B=255, T=20;
+  const cols = ["#3d7bff","#ff8a3d","#e2483d","#18b6c9","#8a6bff","#ffc93c"];
+  const pts=[]; for(let n=1;n<=120;n++){const w=Math.floor((n-1)/20),k=(n-1)%20;let v=1+w*.85+k*.085;if(k==3||k==12)v*=.76;else if(k==4||k==14)v*=1.12;else if(k==0&&n>1)v*=.9;else if(k>=18)v*=1.14;pts.push(v);}
+  const mx=Math.max(...pts)*1.05, x=i=>X0+i*(Wd-X0-10)/119, y=v=>T+(B-T)*(1-v/mx);
+  let s='';
+  for(let w=0;w<6;w++){ s+=`<rect x="${x(w*20)}" y="${T}" width="${(Wd-X0-10)/6}" height="${B-T}" fill="${cols[w]}" opacity=".07"/><text x="${x(w*20+10)}" y="${B+28}" fill="${cols[w]}" font-size="15" font-weight="700" text-anchor="middle" font-family="Inter">World ${w+1}</text>`; }
+  const d=pts.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1)).join(' ');
+  s+=`<defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffc93c" stop-opacity=".4"/><stop offset="1" stop-color="#ffc93c" stop-opacity="0"/></linearGradient></defs>`;
+  s+=`<path d="${d} L${x(119)},${B} L${X0},${B} Z" fill="url(#g)"/><path d="${d}" fill="none" stroke="#ffc93c" stroke-width="3" stroke-linejoin="round"/>`;
+  s+=`<text x="${X0}" y="${T-4}" fill="#aab3cc" font-size="13" font-family="Inter">harder ↑</text>`;
+  svg.innerHTML=s;
+})();
+
+/* gallery + lightbox */
+const G = [["hero","Rail world"],["w4","Port"],["w5","Airport"],["w6","Headquarters"],["goal","Level start"],["route","Shipping route"],["fragile","Fragile parcels"],["profile","Profile"],["ledger","Ledger"],["crew1","Robot crew"],["drone2","Drone break — airport"],["drone3","Drone break — HQ"],["turkish","Turkish cities"]];
+const gal = document.getElementById('gal');
+G.forEach(([f,a],i)=>{ const b=document.createElement('button'); if(i===0) b.className='big'; b.innerHTML=`<img src="assets/img/${f}.webp" alt="${a}" loading="lazy">`; b.onclick=()=>openLb(i); gal.appendChild(b); });
+const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg'); let cur=0;
+function openLb(i){cur=(i+G.length)%G.length; lbimg.src=`assets/img/${G[cur][0]}.webp`; lbimg.alt=G[cur][1]; lb.classList.add('on');}
+lb.querySelector('.x').onclick=()=>lb.classList.remove('on');
+lb.querySelector('.pv').onclick=e=>{e.stopPropagation();openLb(cur-1)};
+lb.querySelector('.nx').onclick=e=>{e.stopPropagation();openLb(cur+1)};
+lb.onclick=e=>{ if(e.target===lb) lb.classList.remove('on'); };
+addEventListener('keydown',e=>{ if(!lb.classList.contains('on'))return; if(e.key==='Escape')lb.classList.remove('on'); if(e.key==='ArrowLeft')openLb(cur-1); if(e.key==='ArrowRight')openLb(cur+1); });
+
+/* video */
+document.getElementById('videoLink').href = YOUTUBE_LINK;
+if (YOUTUBE_VIDEO_ID) {
+  document.getElementById('videoBox').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}" title="SeroCargo gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+}
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
